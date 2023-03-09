@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl.Http;
-using Flurl.Http.Configuration;
-using Newtonsoft.Json;
 using ShoppingCart.Models;
 using ShoppingCart.Services.Interfaces;
 

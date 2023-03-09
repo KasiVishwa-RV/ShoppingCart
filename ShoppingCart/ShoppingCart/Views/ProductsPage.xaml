@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              xmlns:models="clr-namespace:ShoppingCart.Models"
-             xmlns:controls="clr-namespace:ShoppingCart.CustomControl"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              NavigationPage.HasBackButton="False"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="ShoppingCart.Views.ProductsPage"

@@ -1,12 +1,9 @@
 using System;
 using System.IO;
 using Flurl.Http;
-using Flurl.Http.Configuration;
-using Fusillade;
 using LiteDB;
 using Prism;
 using Prism.Ioc;
-using ShoppingCart.Models;
 using ShoppingCart.Repos;
 using ShoppingCart.Repos.Interface;
 using ShoppingCart.Services;

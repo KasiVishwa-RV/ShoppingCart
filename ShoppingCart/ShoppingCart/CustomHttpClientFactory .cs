@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using Flurl.Http.Configuration;
-using ShoppingCart.Services.Interfaces;
 
 namespace ShoppingCart
 {
