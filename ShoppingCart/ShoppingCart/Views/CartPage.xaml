@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:models="clr-namespace:ShoppingCart.Models"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ShoppingCart.Views.CartPage"
+             x:Name="cartPage"
+             BackgroundColor="#CBC3E3"
+             Title="Cart">
+    <Grid Margin="20,10"
+          RowDefinitions="60*,30*,10*">
+        <CollectionView  Grid.Row="0"
+                         ItemsSource="{Binding CartList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:CartModel">
+                    <Frame BackgroundColor="White"
+                           Margin="20,10">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding ProductBrand}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label Text="{Binding ProductTitle}"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <Label VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Price" />
+                                        <Span Text=" : " />
+                                        <Span Text="{Binding ProductPrice}" />
+                                        <Span Text=" $ " />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Button Text="Remove"
+                                    BackgroundColor="#EB5406"
+                                    Command="{Binding BindingContext.RemoveCommand,Source={x:Reference cartPage}}" CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Frame Grid.Row="1">
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="60*,40*">
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Total No.of Products in the Cart" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Total Cost" />
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding CartList.Count}" />
+                <Label Grid.Row="1"
+                       Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Price" />
+                            <Span Text=" : " />
+                            <Span Text="{Binding TotalCost}" />
+                            <Span Text=" $ " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Frame>
+        <Frame Grid.Row="2"
+               Padding="0"
+               BackgroundColor="LimeGreen">
+            <Label Text="Pay"
+                   Padding="0"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding PayCommand}" />
+            </Frame.GestureRecognizers>
+        </Frame>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="#CBC3E3"
+             x:Class="ShoppingCart.Views.LoginPage"
+             Title="Login Page">
+    <Grid VerticalOptions="CenterAndExpand"
+          HorizontalOptions="CenterAndExpand"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+        <Frame BackgroundColor ="Transparent">
+            <StackLayout>
+                <Label Text="Welcome" FontSize="Large" />
+                <Label Text="Please Login to See the Products" FontSize="Medium"/>
+            </StackLayout>
+        </Frame>
+        <Frame Grid.Row="1" Margin="10,0">
+            <StackLayout>
+                <Entry Text="{Binding UserDetails}"
+                       Placeholder="Enter Username" />
+                <Entry Text="{Binding Password}"
+                       IsPassword="True"
+                       Placeholder="Password" />
+            </StackLayout>
+        </Frame>
+        <Button Grid.Row="2"
+                Margin="90,0"
+                Text="Login"
+                Command="{Binding LoginCommand}" />
+        <Label HorizontalOptions="CenterAndExpand"
+               Grid.Row="3"
+               TextDecorations="Underline"
+               Text="New User?">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SignupCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+        <Frame Grid.Row="4" CornerRadius="10" HeightRequest="20" Margin="100,0,10,0" Padding="5"
+               BackgroundColor="#Ff4a4a"
+               VerticalOptions="End"
+               HorizontalOptions="End">
+            <Label Text="Admin Login" TextColor="Black" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AdminLoginCommand}" />
+            </Frame.GestureRecognizers>
+        </Frame>
+    </Grid>
+</ContentPage>

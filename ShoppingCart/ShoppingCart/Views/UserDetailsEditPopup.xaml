@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="Transparent"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="ShoppingCart.Views.UserDetailsEditPopup">
+
+    <Frame  BackgroundColor="WhiteSmoke"
+            HeightRequest="600"
+            BorderColor="LightGray"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            Margin="30,30,30,70"
+            WidthRequest="700"
+            CornerRadius="8">
+        <Grid RowDefinitions="Auto,Auto,Auto">
+            <StackLayout Grid.Row="0">
+                <Entry Text="{Binding Username}"
+                       Placeholder="Name" />
+                <Entry Text="{Binding Email}"
+                       Placeholder="Email" />
+                <Entry Text="{Binding Password}"
+                       IsPassword="{Binding IsPasswordNotVisible}"
+                       Placeholder="Password" />
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="EndAndExpand">
+                    <CheckBox IsChecked="False">
+                        <CheckBox.Behaviors>
+                            <prism:EventToCommandBehavior EventName="CheckedChanged"
+                                                          Command="{Binding PasswordVisibilityCommand}" />
+                        </CheckBox.Behaviors>
+                    </CheckBox>
+                    <Label Text="View Password"
+                           VerticalOptions="CenterAndExpand" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="1"
+                         Orientation="Horizontal">
+                <Button Text="Cancel"
+                        Command="{Binding CancelCommand}" />
+                <Button Text="Update"
+                        Command="{Binding UpdateCommand}" />
+            </StackLayout>
+            <Label Text="Delete User"
+                   Grid.Row="2"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DeleteUserCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </Frame>
+
+</ContentPage>

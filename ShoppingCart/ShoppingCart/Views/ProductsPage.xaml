@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:models="clr-namespace:ShoppingCart.Models"
+             xmlns:controls="clr-namespace:ShoppingCart.CustomControl"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             NavigationPage.HasBackButton="False"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ShoppingCart.Views.ProductsPage"
+             x:Name="productsPage"
+             Title='Products'>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+        <Label Text="{Binding Title}" FontSize="Title" HorizontalOptions="StartAndExpand" />
+        <Frame VerticalOptions="CenterAndExpand"
+               HorizontalOptions="End"
+               BackgroundColor="#FA2A55">
+            <Label Text="Logout" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Frame.GestureRecognizers>
+        </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <Grid RowDefinitions="80*,7*">
+        <ScrollView Grid.Row="0">
+            <CollectionView ItemsSource="{Binding ProductList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ProductModel">
+                        <Frame Margin="30,10"
+                               BackgroundColor="White">
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical">
+                                    <!--<CarouselView ItemsSource="{Binding Images}">
+                                        <CarouselView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ffimageloading:CachedImage Source="{Binding BindingContext.Url,Source={x:Reference productsPage}}">
+                                                </ffimageloading:CachedImage>
+                                            </DataTemplate>
+                                        </CarouselView.ItemTemplate>
+                                    </CarouselView>-->
+
+                                    <Label Text="{Binding Brand}"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand" />
+                                    <Label Text="{Binding Title}"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand" />
+                                    <Label VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Price" />
+                                                <Span Text=" : " />
+                                                <Span Text="{Binding Price}" />
+                                                <Span Text=" $ " />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Discount" />
+                                                <Span Text=" : " />
+                                                <Span Text="{Binding DiscountPercentage}" />
+                                                <Span Text=" % " />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Rating" />
+                                                <Span Text=" : " />
+                                                <Span Text="{Binding Rating}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Stock" />
+                                                <Span Text=" : " />
+                                                <Span Text="{Binding Stock}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal"
+                                             HorizontalOptions="Center">
+                                    <Button Text="Add to Cart"
+                                            Command="{Binding BindingContext.AddToCartCommand,Source={x:Reference productsPage}}"
+                                            CommandParameter="{Binding .}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Button Grid.Row="1"
+                Text="Go to Cart"
+                Margin="100,0"
+                Command="{Binding BindingContext.OpenCartCommand,Source={x:Reference productsPage}}" />
+    </Grid>
+</ContentPage>
